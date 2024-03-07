@@ -56,13 +56,13 @@ export default {
     methods: {
         validateForm() {
             if (!this.email) {
-                this.message_email = 'Email is required';
+                this.message_email = 'email nya  di isi';
             } else {
                 this.message_email = '';
             }
 
             if (!this.password) {
-                this.message_password = 'Password is required';
+                this.message_password = 'Password di isi woy';
             } else {
                 this.message_password = '';
             }

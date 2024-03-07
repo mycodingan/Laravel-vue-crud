@@ -1,104 +1,50 @@
 <template>
-  <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="container mt-4">
+    <div class="row">
+      <div v-for="student in students" :key="student.id" class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ student.nama }}</h5>
+            <p class="card-text">No Absen: {{ student.no_absen }}</p>
+            <p class="card-text">Kelas: {{ student.kelas }}</p>
+            <p class="card-text">Jurusan: {{ student.jurusan }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {  
+      students: []
+    };
+  },
+  mounted() {
+    this.fetchStudents();
+  },
+  methods: {
+    async fetchStudents() {
+      try {
+        // memasukan data data yang berasal dari api
+        const response = await axios.get('http://192.168.11.149:8000/api/siswa/');
+        this.students = response.data.data;
+      } catch (error) {
+        console.error('data nya error:', error);
+      }
+    },
+    formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleString();
+    }
+  }
+};
+</script>
+
 <style scoped>
-.item {
-  margin-top: 2rem;
-  display: flex;
-  position: relative;
-}
-
-.details {
-  flex: 1;
-  margin-left: 1rem;
-}
-
-i {
-  display: flex;
-  place-items: center;
-  place-content: center;
-  width: 32px;
-  height: 32px;
-  color: var(--color-text);
-}
-
-h3 {
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-bottom: 0.4rem;
-  color: var(--color-heading);
-}
-
-@media (min-width: 1024px) {
-  .item {
-    margin-top: 0;
-    padding: 0.4rem 0 1rem calc(var(--section-gap) / 2);
-  }
-
-  i {
-    top: calc(50% - 25px);
-    left: -26px;
-    position: absolute;
-    border: 1px solid var(--color-border);
-    background: var(--color-background);
-    border-radius: 8px;
-    width: 50px;
-    height: 50px;
-  }
-
-  .item:before {
-    content: ' ';
-    border-left: 1px solid var(--color-border);
-    position: absolute;
-    left: 0;
-    bottom: calc(50% + 25px);
-    height: calc(50% - 25px);
-  }
-
-  .item:after {
-    content: ' ';
-    border-left: 1px solid var(--color-border);
-    position: absolute;
-    left: 0;
-    top: calc(50% + 25px);
-    height: calc(50% - 25px);
-  }
-
-  .item:first-of-type:before {
-    display: none;
-  }
-
-  .item:last-of-type:after {
-    display: none;
-  }
-}
+/* Tambahkan styling jika diperlukan */
 </style>
