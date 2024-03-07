@@ -1,40 +1,42 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router';
-</script>
-
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div class="container">
-        <RouterLink to="/" class=" navbar-brand">Crud josshua wahyu</RouterLink>
-      </div>
+    <div class="container">
+      <router-link to="/" class="navbar-brand">Crud josshua wahyu</router-link>
+    </div>
     <button
-    class=" navbar-toggler"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#navbarHeader">
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarHeader"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarHeader">
-      <ul class=" navbar-nav ms-auto mb-2 mb-lg-0 d-flex">
-        <li class="nav-item">
-          <a class="nav-link" style="cursor: pointer;"> Logout</a>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li v-if="user" class="nav-item">
+          <a class="nav-link" @click="logout">Logout</a>
+        </li>
+        <li v-else class="nav-item">
+          <router-link to="/login" class="nav-link">Login</router-link>
         </li>
       </ul>
     </div>
   </nav>
-  <RouterView />
+  <router-view />
 </template>
 
-<style scoped>
+<script setup>
+import { useRouter } from 'vue-router';
 
-</style>
-<script>
-export default {
-  data() {
-    return {
-      message_success_post: "",
-      user: null
-    }
-  }
-}
+const router = useRouter();
+
+const user = null;
+
+const logout = () => {
+  localStorage.removeItem('token');
+  router.push('/login');
+};
 </script>
+
+<style scoped>
+</style>
