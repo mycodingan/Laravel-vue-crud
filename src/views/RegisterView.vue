@@ -108,7 +108,6 @@ export default {
 </script>
 
 <style scoped>
-/* Custom styling for invalid feedback */
 .invalid-feedback {
     color: #dc3545;
     font-size: 80%;

@@ -4,7 +4,7 @@
             <h1>Login</h1>
         </div>
         <form>
-            <div class="row d-inline">
+            <div class="row d-inline ">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label">Email</label>
