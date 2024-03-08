@@ -18,7 +18,8 @@
     "bootstrap-vue": "^2.23.1",
     "vue": "^3.4.21",
     "vue-axios": "^3.5.2",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vue-sweetalert2": "^5.0.5"
   },
   "devDependencies": {
     "@nightwatch/vue": "^3.1.0",
