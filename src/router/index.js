@@ -34,7 +34,7 @@ const router = createRouter({
     {
       path: '/create',
       name: 'creaste',
-      component: Create
+      component: Create 
     }
   ]
 });

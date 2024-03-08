@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav v-if="showNav" class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
       <router-link to="/" class="navbar-brand">Crud josshua wahyu</router-link>
     </div>
@@ -31,6 +31,8 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const user = null;
+const currentRoute = router.currentRoute.value;
+const showNav = currentRoute.path !== '/login' && currentRoute.path !== '/register';
 
 const logout = () => {
   localStorage.removeItem('token');
@@ -39,4 +41,3 @@ const logout = () => {
 </script>
 
 <style scoped>
-</style>

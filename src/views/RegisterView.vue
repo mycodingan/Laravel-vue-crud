@@ -1,58 +1,56 @@
 <template>
-    <div class="container border border-info-subtle-800 w-50">
-        <div class="container p-4 ">
-            <h1>Register</h1>
+    <div class="container-fluid d-flex justify-content-center align-items-center h-100">
+        <div class="card border-info-subtle-800 w-50">
+            <div class="card-body p-4">
+                <h1 class="text-center mb-4">Register</h1>
+                <form @submit.prevent="submitForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input
+                                type="text"
+                                v-model="fullName"
+                                id="fullName"
+                                name="fullName"
+                                placeholder="Full Name"
+                                :class="{ 'is-invalid': message_fullName.length > 0 }"
+                                class="form-control rounded-pill py-3 px-4"
+                            />
+                            <div v-if="message_fullName.length > 0" class="invalid-feedback">{{ message_fullName }}</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input
+                                type="email"
+                                v-model="email"
+                                id="email"
+                                name="email"
+                                placeholder="Email"
+                                :class="{ 'is-invalid': message_email.length > 0 }"
+                                class="form-control rounded-pill py-3 px-4"
+                            />
+                            <div v-if="message_email.length > 0" class="invalid-feedback">{{ message_email }}</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input
+                            type="password"
+                            v-model="password"
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                            :class="{ 'is-invalid': message_password.length > 0 }"
+                            class="form-control rounded-pill py-3 px-4"
+                        />
+                        <div v-if="message_password.length > 0" class="invalid-feedback">{{ message_password }}</div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary rounded-pill px-5 py-3">Register</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <form @submit.prevent="submitForm">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label">Full Name</label>
-                        <input
-                            type="text"
-                            v-model="fullName"
-                            id="fullName"
-                            name="fullName"
-                            placeholder="Full Name"
-                            :class="{ 'is-invalid': message_fullName.length > 0 }"
-                            class="form-control rounded-lg py-3 px-4 outline-none bg-transparent"
-                        />
-                        <div v-if="message_fullName.length > 0" class="invalid-feedback">{{ message_fullName }}</div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input
-                            type="email"
-                            v-model="email"
-                            id="email"
-                            name="email"
-                            placeholder="Email"
-                            :class="{ 'is-invalid': message_email.length > 0 }"
-                            class="form-control rounded-lg py-3 px-4 outline-none bg-transparent"
-                        />
-                        <div v-if="message_email.length > 0" class="invalid-feedback">{{ message_email }}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Password</label>
-                <input
-                    type="password"
-                    v-model="password"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    :class="{ 'is-invalid': message_password.length > 0 }"
-                    class="form-control rounded-lg py-3 px-4 outline-none bg-transparent"
-                />
-                <div v-if="message_password.length > 0" class="invalid-feedback">{{ message_password }}</div>
-            </div>
-            <div class="form-group mt-4">
-                <button type="submit" class="btn btn-primary px-5 py-3">Register</button>
-            </div>
-        </form>
     </div>
 </template>
 
@@ -111,5 +109,11 @@ export default {
 .invalid-feedback {
     color: #dc3545;
     font-size: 80%;
+}
+.card {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 </style>
