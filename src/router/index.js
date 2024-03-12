@@ -3,7 +3,8 @@ import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
 import AboutView from '../views/AboutView.vue'; 
 import RegisterView from '../views/RegisterView.vue';
-import Create from '/src/components/data/create.vue'
+import Create from '/src/components/data/create.vue';
+import EditStudent from '/src/components/data/edit.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,6 +36,11 @@ const router = createRouter({
       path: '/create',
       name: 'creaste',
       component: Create 
+    },
+    {
+      path: '/edit/:id',
+      name: 'EditStudent',
+      component: EditStudent
     }
   ]
 });

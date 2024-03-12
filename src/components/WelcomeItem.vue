@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link to="/create" class="btn btn-secondary">Add data</router-link>
-                            </div>
+  </div>
   <div class="container mt-4">
     <div class="row">
       <div v-for="student in students" :key="student.id" class="col-md-4 mb-3">
@@ -11,7 +11,7 @@
             <p class="card-text">No Absen: {{ student.no_absen }}</p>
             <p class="card-text">Kelas: {{ student.kelas }}</p>
             <p class="card-text">Jurusan: {{ student.jurusan }}</p>
-            <button @click="editStudent(student)" class="btn btn-primary">Edit</button>
+            <router-link :to="{ name: 'EditStudent', params: { id: student.id } }" class="btn btn-primary">Edit</router-link>
             <button @click="deleteStudent(student.id)" class="btn btn-danger">Delete</button>
           </div>
         </div>
@@ -50,10 +50,6 @@ export default {
         console.error('Error deleting student:', error);
         alert('Failed to delete student. Please try again.');
       }
-    },
-    formatDate(dateString) {
-      const date = new Date(dateString);
-      return date.toLocaleString();
     }
   }
 };

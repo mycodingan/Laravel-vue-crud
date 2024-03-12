@@ -48,7 +48,7 @@
     methods: {
       async createStudent() {
         try {
-          await axios.post('http://192.168.11.149:8000/api/siswa/', this.newStudent);
+          await axios .post('http://192.168.11.149:8000/api/siswa/', this.newStudent);
           alert('Student created successfully!');
           this.newStudent = {
             no_absen: '',
@@ -64,7 +64,5 @@
     }
   };
   </script>
-  
   <style scoped>
   </style>
-  
