@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link to="/create" class="btn btn-secondary">Add data</router-link>
-  </div>
+                            </div>
   <div class="container mt-4">
     <div class="row">
       <div v-for="student in students" :key="student.id" class="col-md-4 mb-3">

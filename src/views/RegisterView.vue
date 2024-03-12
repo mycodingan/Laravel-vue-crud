@@ -47,6 +47,7 @@
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary rounded-pill px-5 py-3">Register</button>
+                        <p><small>Sudah punya Akun <router-link to="/login" class="navbar-brand text-primary">Login </router-link>lah</small></p>
                     </div>
                 </form>
             </div>

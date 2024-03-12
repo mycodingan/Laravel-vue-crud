@@ -41,3 +41,4 @@ const logout = () => {
 </script>
 
 <style scoped>
+</style>
