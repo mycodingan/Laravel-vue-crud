@@ -1,4 +1,10 @@
+<script setup>
+import Navbar from '../components/nav.vue';
+</script>
 <template>
+  <main>
+    <Navbar/>
+  </main>
   <div>
     <router-link to="/create" class="btn btn-secondary">Add data</router-link>
   </div>
