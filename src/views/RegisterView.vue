@@ -56,6 +56,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
@@ -68,30 +70,42 @@ export default {
         };
     },
     methods: {
-        submitForm() {
-            if (!this.fullName) {
-                this.message_fullName = 'Full Name is required';
-            } else {
-                this.message_fullName = '';
-            }
-
-            if (!this.email) {
-                this.message_email = 'Email is required';
-            } else {
-                this.message_email = '';
-            }
-
-            if (!this.password) {
-                this.message_password = 'Password is required';
-            } else {
-                this.message_password = '';
-            }
-
-            if (this.fullName && this.email && this.password) {
-                console.log('Form submitted!');
-            }
+    submitForm() {
+        if (!this.fullName) {
+            this.message_fullName = 'Full Name is required';
+        } else {
+            this.message_fullName = '';
         }
-    },
+
+        if (!this.email) {
+            this.message_email = 'Email is required';
+        } else {
+            this.message_email = '';
+        }
+
+        if (!this.password) {
+            this.message_password = 'Password is required';
+        } else {
+            this.message_password = '';
+        }
+
+        if (this.fullName && this.email && this.password) {
+            axios.post('http://192.168.11.149:8000/api/register', {
+                name: this.fullName,
+                email: this.email,
+                password: this.password
+            })
+            .then(response => {
+                console.log(response.data);
+                this.$router.push('/');
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+    }
+},
+
     watch: {
         fullName() {
             this.message_fullName = '';

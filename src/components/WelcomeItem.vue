@@ -11,7 +11,7 @@
             <p class="card-text">No Absen: {{ student.no_absen }}</p>
             <p class="card-text">Kelas: {{ student.kelas }}</p>
             <p class="card-text">Jurusan: {{ student.jurusan }}</p>
-            <router-link :to="{ name: 'EditStudent', params: { id: student.id } }" class="btn btn-primary">Edit</router-link>
+            <router-link :to="{ name: 'EditStudent', params: { id: student.id } }" class="btn btn-primary m-3   ">Edit</router-link>
             <button @click="deleteStudent(student.id)" class="btn btn-danger">Delete</button>
           </div>
         </div>

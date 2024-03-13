@@ -22,7 +22,9 @@
                   <label for="jurusan" class="form-label">Jurusan</label>
                   <input type="text" class="form-control" id="jurusan" v-model="editedStudent.jurusan" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary m-3">Update</button>
+                <router-link to="/" class="btn btn-primary">back</router-link>
+
               </form>
             </div>
           </div>
@@ -48,7 +50,7 @@
     methods: {
       async editStudent() {
         try {
-          const studentId = this.$route.params.id; 
+          const studentId = this.$route.params.id;
           await axios.put(`http://192.168.11.149:8000/api/siswa/${studentId}`, this.editedStudent);
           alert('Student updated successfully!');
         } catch (error) {
@@ -60,12 +62,15 @@
         try {
           const studentId = this.$route.params.id; 
           const response = await axios.get(`http://192.168.11.149:8000/api/siswa/${studentId}`);
-          this.editedStudent = response.data;       
+          console.log(response.data.data.data)
+          this.editedStudent = response.data.data;
         } catch (error) {
           console.error('Error fetching student:', error);
         }
       }
     },
+
+    
     created() {
       this.fetchStudent();
     }

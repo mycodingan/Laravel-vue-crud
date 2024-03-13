@@ -32,7 +32,7 @@
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary rounded-pill px-5 py-3">Login</button>
-                        <p><small>Belum punya Akun <router-link to="/register" class="navbar-brand text-primary">Register </router-link>lah</small></p>
+                        <p><small>Belum punya Akun </small><router-link to="/register" class="navbar-brand text-primary">Register </router-link>lah</p>
                     </div>
                 </form>
             </div>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-export default {
+export default {   
     data() {
         return {
             email: '',
