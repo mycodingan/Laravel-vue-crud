@@ -28,7 +28,6 @@ import Navbar from '../components/nav.vue';
 
 <script>
 import axios from 'axios';
-
 export default {
   data() {
     return {

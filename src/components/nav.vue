@@ -1,7 +1,7 @@
 <template>
-    <nav v-if="showNav" class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav v-if="showNav" class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <router-link to="/" class="navbar-brand">Crud Project </router-link>
+      <router-link to="/" class="navbar-brand">Crud Project</router-link>
     </div>
     <button
       class="navbar-toggler"
@@ -23,6 +23,7 @@
     </div>
   </nav>
 </template>
+
 <script setup>
 import { useRouter } from 'vue-router';
 
