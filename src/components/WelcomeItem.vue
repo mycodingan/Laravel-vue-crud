@@ -1,6 +1,3 @@
-<script setup>
-import Navbar from '../components/nav.vue';
-</script>
 <template>
   <main>
     <Navbar/>
@@ -17,7 +14,7 @@ import Navbar from '../components/nav.vue';
             <p class="card-text">No Absen: {{ student.no_absen }}</p>
             <p class="card-text">Kelas: {{ student.kelas }}</p>
             <p class="card-text">Jurusan: {{ student.jurusan }}</p>
-            <router-link :to="{ name: 'EditStudent', params: { id: student.id } }" class="btn btn-primary m-3   ">Edit</router-link>
+            <router-link :to="{ name: 'editStudent', params: { id: student.id } }" class="btn btn-primary m-3">Edit</router-link>
             <button @click="deleteStudent(student.id)" class="btn btn-danger">Delete</button>
           </div>
         </div>
@@ -26,39 +23,47 @@ import Navbar from '../components/nav.vue';
   </div>
 </template>
 
-<script>
+<script setup>
 import axios from 'axios';
-export default {
-  data() {
-    return {
-      students: []
-    };
-  },
-  mounted() {
-    this.fetchStudents();
-  },
-  methods: {
-    async fetchStudents() {
-      try {
-        const response = await axios.get('http://192.168.11.149:8000/api/siswa/');
-        this.students = response.data.data;
-      } catch (error) {
-        console.error('Error fetching students:', error);
+import { ref, onMounted } from 'vue';
+import Navbar from '../components/nav.vue';
+
+const students = ref([]);
+
+const fetchStudents = async () => {
+  try {
+    const token = localStorage.getItem('accessToken'); 
+    const response = await axios.get('http://192.168.11.149:8000/api/siswa/', {
+      headers: {
+        Authorization: `Bearer ${token}`
       }
-    },
-    async deleteStudent(studentId) {
-      try {
-        await axios.delete(`http://192.168.11.149:8000/api/siswa/${studentId}`);
-        alert('Student deleted successfully!');
-        this.fetchStudents();
-      } catch (error) {
-        console.error('Error deleting student:', error);
-        alert('Failed to delete student. Please try again.');
-      }
-    }
+    });
+    console.log(response);
+    students.value = response.data.data;
+  } catch (error) {
+    console.error('Error fetching students:', error);
   }
 };
+
+const deleteStudent = async (studentId) => { 
+  try {
+    const token = localStorage.getItem('accessToken');
+    await axios.delete(`http://192.168.11.149:8000/api/siswa/${studentId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    alert('Student deleted successfully!');
+    fetchStudents();
+  } catch (error) {
+    console.error('Error deleting student:', error);
+    alert('Failed to delete student. Please try again.');
+  }
+};
+
+onMounted(fetchStudents);
 </script>
 
 <style scoped>
+/* Add any scoped styles here */
 </style>

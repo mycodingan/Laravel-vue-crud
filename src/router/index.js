@@ -39,7 +39,7 @@ const router = createRouter({
     },
     {
       path: '/edit/:id',
-      name: 'EditStudent',
+      name: 'editStudent',
       component: EditStudent,
       meta: { requiresAuth: true }
     }
@@ -47,7 +47,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = !!localStorage.getItem('accessToken');
+  const isAuthenticated = !!localStorage.getItem('token');
+  console.log(localStorage.getItem('token'))
 
   if (to.meta.requiresAuth && !isAuthenticated) {
     next({ name: 'login' });

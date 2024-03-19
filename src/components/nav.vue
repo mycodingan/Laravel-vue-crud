@@ -29,12 +29,19 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const user = null;
+let user = null;
+
 const currentRoute = router.currentRoute.value;
 const showNav = currentRoute.path !== '/login' && currentRoute.path !== '/register';
 
 const logout = () => {
-  localStorage.removeItem('token');
-  router.push('/login');
+  const token = localStorage.getItem('token');
+  if (token) {
+    localStorage.removeItem('token');
+    user = null;
+    router.replace('/login');
+  } else {
+    console.error('Token not found in localStorage');
+  }
 };
 </script>
