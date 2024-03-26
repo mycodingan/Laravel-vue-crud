@@ -25,8 +25,8 @@
 
 <script setup>
 import axios from 'axios';
-import { ref, onMounted } from 'vue';
-import Navbar from '../components/nav.vue';
+import { ref, onMounted } from   'vue';
+import Navbar from './nav.vue';
 
 const students = ref([]);
 
@@ -40,7 +40,7 @@ const fetchStudents = async () => {
     });
     console.log(response);
     students.value = response.data.data;
-  } catch (error) {
+  } catch (error) {   
     console.error('Error fetching students:', error);
   }
 };
@@ -51,7 +51,7 @@ const deleteStudent = async (studentId) => {
     await axios.delete(`http://192.168.11.149:8000/api/siswa/${studentId}`, {
       headers: {
         Authorization: `Bearer ${token}`
-      }
+      } 
     });
     alert('Student deleted successfully!');
     fetchStudents();

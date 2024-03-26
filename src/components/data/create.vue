@@ -23,6 +23,8 @@
                 <input type="text" class="form-control" id="jurusan" v-model="newStudent.jurusan" required>
               </div>
               <button type="submit" class="btn btn-primary">Create</button>
+              <router-link to="/" class="btn btn-primary">Back</router-link>
+
             </form>
           </div>
         </div>

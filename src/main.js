@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from './views/layout/App.vue'
 import router from './router'
 
 const app = createApp(App)

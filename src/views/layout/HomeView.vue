@@ -1,5 +1,5 @@
 <script setup>
-import WelcomeItem from '../components/WelcomeItem.vue'
+import WelcomeItem from '../../components/Index.vue'
 </script>
 
 <template>
