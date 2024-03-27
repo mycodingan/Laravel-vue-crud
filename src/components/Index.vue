@@ -64,6 +64,4 @@ const deleteStudent = async (studentId) => {
 onMounted(fetchStudents);
 </script>
 
-<style scoped>
-/* Add any scoped styles here */
-</style>
+    

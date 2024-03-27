@@ -1,6 +1,6 @@
 <template>
     <main>
-      <Navbar/>
+        <!-- <Navbar/> -->
     </main>
     <div>
       <router-link to="/create" class="btn btn-secondary">Add data</router-link>
@@ -19,14 +19,14 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>    
     </div>
   </template>
   
   <script setup>
   import axios from 'axios';
   import { ref, onMounted } from   'vue';
-  import Navbar from './nav.vue';
+  // import Navbar from './nav.vue';
   
   const students = ref([]);
   
