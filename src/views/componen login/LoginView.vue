@@ -1,7 +1,12 @@
 <template>
     <div v-if="showSuccessAlert" class="alert alert-success alert-dismissible fade show" role="alert">
-    Login Berhasil! Anda akan diarahkan ke halaman utama dalam 3 detik.
+      {{ messageAlert }}
     <button type="button" class="btn-close" @click="showSuccessAlert = false"></button>
+    </div>
+
+    <div v-if="showErrorAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ messageAlert }}
+    <button type="button" class="btn-close" @click="showErrorAlert = false"></button>
   </div>
   <div class="container-fluid d-flex justify-content-center align-items-center h-100 mt-5">
     <div class="card border-info-subtle-800 w-50">
@@ -48,7 +53,9 @@ export default {
       message_email: '',
       message_password: '',
       token: '',
-      showSuccessAlert: false
+      showSuccessAlert: false, 
+      showErrorAlert: false, 
+      messageAlert: ''
     };
   },
   methods: {
@@ -70,14 +77,19 @@ export default {
             email: this.email,
             password: this.password
           });
+          console.log('hasil',response);
+          this.messageAlert = response.data.message
           this.token = response.data.token;
           localStorage.setItem('accessToken', this.token);
+
           this.showSuccessAlert = true;
           setTimeout(() => {
             this.showSuccessAlert = false;
             this.$router.push('/');
           }, 3000);
         } catch (error) {
+          this.messageAlert = error.message
+          this.showErrorAlert = true;
           console.error(error);
         }
       }
