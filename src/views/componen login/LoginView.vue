@@ -12,23 +12,19 @@
     <div class="card border-info-subtle-800 w-50">
       <div class="card-body p-4">
         <h1 class="text-center mb-4">Login</h1>
-        <!-- Form -->
-        <form @submit.prevent="submitForm">
-          <!-- Email Input -->
+          <form @submit.prevent="submitForm">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" v-model.trim="email" id="email" name="email" placeholder="Email"
               :class="{ 'is-invalid': message_email }" class="form-control rounded-pill py-3 px-4" />
             <div v-if="message_email" class="invalid-feedback">{{ message_email }}</div>
           </div>
-          <!-- Password Input -->
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" v-model.trim="password" id="password" name="password" placeholder="Password"
               :class="{ 'is-invalid': message_password }" class="form-control rounded-pill py-3 px-4" />
             <div v-if="message_password" class="invalid-feedback">{{ message_password }}</div>
           </div>
-          <!-- Login Button -->
           <div class="text-center">
             <button type="submit" class="btn btn-primary rounded-pill px-5 py-3">Login</button>
             <p><small>Belum punya Akun? <router-link to="/register" class="navbar-brand text-primary">Daftar
@@ -38,7 +34,6 @@
       </div>
     </div>
   </div>
-  <!-- Success Alert Popup -->
 
 </template>
 

@@ -10,6 +10,7 @@
       <div v-for="student in students" :key="student.id" class="col-md-4 mb-3">
         <div class="card">
           <div class="card-body">
+            <img :src="student.gambar" alt="">
             <h5 class="card-title">{{ student.nama }}</h5>
             <p class="card-text">No Absen: {{ student.no_absen }}</p>
             <p class="card-text">Kelas: {{ student.kelas }}</p>
@@ -26,7 +27,7 @@
 <script setup>
 import axios from 'axios';
 import { ref, onMounted } from   'vue';
-import Navbar from './nav.vue';
+import Navbar from './nav.vue';0.
 
 const students = ref([]);
 

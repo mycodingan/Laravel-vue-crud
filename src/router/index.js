@@ -6,6 +6,8 @@ import RegisterView from '../views/componen login/RegisterView.vue';
 import Create from '/src/components/data/create.vue';
 import EditStudent from '/src/components/data/edit.vue';
 import UserData from '/src/components/user/index.vue';
+import CreateUser from '../components/user/create.vue';
+import EditUser from '../components/user/edit.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,12 +18,26 @@ const router = createRouter({
       component: HomeView,
       meta: { requiresAuth: true } 
     },
+    // user
     {
       path: '/user',
       name: 'user',
       component: UserData,
       meta: { requiresAuth: true } 
     },
+    {
+      path: '/user/create',
+      name: 'create',
+      component: CreateUser,
+      meta: { requiresAuth: true } 
+    },
+    {
+      path: '/user/edit',
+      name: 'edit',
+      component: EditUser,
+      meta: {requiresAuth: true}
+    },
+    //user
     {
       path: '/about',
       name: 'about',
