@@ -11,6 +11,16 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user">user</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">siswa</a>
+        </li>
+      </ul>
+    </div>
     <div class="collapse navbar-collapse" id="navbarHeader">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li v-if="user" class="nav-item">

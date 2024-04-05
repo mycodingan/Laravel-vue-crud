@@ -12,32 +12,59 @@ import EditUser from '../components/user/edit.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-      meta: { requiresAuth: true } 
-    },
     // user
     {
       path: '/user',
       name: 'user',
       component: UserData,
-      meta: { requiresAuth: true } 
+      meta: { requiresAuth: true,
+        role: 'admin'
+      } 
     },
     {
       path: '/user/create',
       name: 'create',
       component: CreateUser,
-      meta: { requiresAuth: true } 
+      meta: { requiresAuth: true,
+        role: 'admin'
+      } 
     },
     {
       path: '/user/edit',
       name: 'edit',
       component: EditUser,
-      meta: {requiresAuth: true}
+      meta: {requiresAuth: true,
+      role: 'admin'
+      }
     },
     //user
+
+    //siswa
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+      meta: { requiresAuth: true,  
+      role: 'user'
+    }
+    },
+    {
+      path: '/create',
+      name: 'create',
+      component: Create,
+      meta: { requiresAuth: true ,
+        role: 'admin'
+      } 
+    },
+    {
+      path: '/edit/:id',
+      name: 'editStudent',
+      component: EditStudent,
+      meta: { requiresAuth: true,
+      role: 'admin'
+      }
+    },
+    //siswa
     {
       path: '/about',
       name: 'about',
@@ -53,33 +80,27 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView
-    },
-    {
-      path: '/create',
-      name: 'create',
-      component: Create,
-      meta: { requiresAuth: true } 
-    },
-    {
-      path: '/edit/:id',
-      name: 'editStudent',
-      component: EditStudent,
-      meta: { requiresAuth: true }
     }
   ]
 });
 
-router.beforeEach((to, _from, next) => {
-  const isAuthenticated = !!localStorage.getItem('accessToken');
-  console.log(localStorage.getItem('accessToken '))
+router.beforeEach((to, from, push) => {
+  const isLoggedIn = localStorage.getItem('accessToken');
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const userRole = localStorage.getItem('userRole');
 
-  if (to.meta.requiresAuth && !isAuthenticated) {
-    console.log(1)
-    next({ name: 'login' });
+  if (requiresAuth && !isLoggedIn) {
+    push('/login');
+  } else if (requiresAuth && isLoggedIn) {
+    if (to.meta.role === 'admin' && userRole !== 'admin') {
+      push('/user');
+    } else if (to.meta.role === 'user' && userRole !== 'user') {
+      push('/');
+    } else {
+      push();
+    }
   } else {
-    console.log(2)
-    next();
+    push();
   }
 });
-
 export default router;

@@ -55,40 +55,45 @@ export default {
   },
   methods: {
     async submitForm() {
-      this.message_email = '';
-      this.message_password = '';
+  this.message_email = '';
+  this.message_password = '';
 
-      if (!this.email) {
-        this.message_email = 'Email is required';
+  if (!this.email) {
+    this.message_email = 'Email is required';
+  }
+
+  if (!this.password) {
+    this.message_password = 'Password is required';
+  }
+
+  if (this.email && this.password) {
+    try {
+      const response = await axios.post('http://192.168.11.149:8000/api/login', {
+        email: this.email,
+        password: this.password
+      });
+
+      this.messageAlert = response.data.message;
+      this.token = response.data.token;
+      localStorage.setItem('accessToken', this.token);
+
+      if (response.data.level === 'admin') {
+        this.$router.push('/user');
+      } else {
+        this.$router.push('/');
       }
 
-      if (!this.password) {
-        this.message_password = 'Password is required';
-      }
-
-      if (this.email && this.password) {
-        try {
-          const response = await axios.post('http://192.168.11.149:8000/api/login', {
-            email: this.email,
-            password: this.password
-          });
-          console.log('hasil',response);
-          this.messageAlert = response.data.message
-          this.token = response.data.token;
-          localStorage.setItem('accessToken', this.token);
-
-          this.showSuccessAlert = true;
-          setTimeout(() => {
-            this.showSuccessAlert = false;
-            this.$router.push('/');
-          }, 3000);
-        } catch (error) {
-          this.messageAlert = error.message
-          this.showErrorAlert = true;
-          console.error(error);
-        }
-      }
+      this.showSuccessAlert = true;
+      setTimeout(() => {
+        this.showSuccessAlert = false;
+      }, 3000);
+    } catch (error) {
+      this.messageAlert = error.response.data.error;
+      this.showErrorAlert = true;
+      console.error(error);
     }
+  }
+}
   }
 };
 </script>
@@ -97,6 +102,19 @@ export default {
 .invalid-feedback {
   color: #dc3545;
   font-size: 80%;
+}
+
+.card {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.container-fluid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .card {
