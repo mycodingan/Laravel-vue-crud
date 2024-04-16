@@ -78,16 +78,16 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#">Siswa</a>
+              <a class="nav-link mx-lg-2" href="/siswa">Siswa</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#">User</a>
+              <a class="nav-link mx-lg-2" href="/user">User</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#">About</a>
+              <a class="nav-link mx-lg-2" href="/about">About</a>
             </li>
           </ul>
         </div>

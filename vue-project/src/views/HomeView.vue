@@ -1,8 +1,10 @@
 <script setup>
+import Narbar from "../asset/navbar.vue"
 </script>
 
 <template>
-  <main>
-    <!-- <TheWelcome /> -->
-  </main>
+  <Narbar/>
+  <div class="container">
+  .
+  </div>
 </template>

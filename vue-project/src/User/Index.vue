@@ -1,4 +1,5 @@
 <template>
+  <navbar/>
     <main>
       <div class="container mt-4">
         <div class="row">
@@ -23,6 +24,7 @@
   
   <script setup>
   import axios from 'axios';
+  import navbar from '@/asset/navbar.vue';
   import { ref, onMounted } from 'vue';
   
   const users = ref([]);
