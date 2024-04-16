@@ -2,7 +2,7 @@
     <main>
     </main>
     <div>
-      <router-link to="/create" class="btn btn-secondary">Add data</router-link>
+      <router-link to="/create/siswa" class="btn btn-secondary">Add data</router-link>
     </div>
     <div class="container mt-4">
       <div class="row">
@@ -14,7 +14,7 @@
               <p class="card-text">No Absen: {{ student.no_absen }}</p>
               <p class="card-text">Kelas: {{ student.kelas }}</p>
               <p class="card-text">Jurusan: {{ student.jurusan }}</p>
-              <router-link :to="{ name: 'editStudent', params: { id: student.id } }" class="btn btn-primary m-3">Edit</router-link>
+              <router-link :to="{ name: 'siswaEdit', params: { id: student.id } }" class="btn btn-primary m-3">Edit</router-link>
               <button @click="deleteStudent(student.id)" class="btn btn-danger">Delete</button>
             </div>
           </div>
