@@ -1,4 +1,5 @@
 <template>
+  <navbar/>
     <main>
       <div class="container mt-4">
         <div class="row">
@@ -10,7 +11,7 @@
                 <p class="card-text">Email: {{ user.email }}</p>
                 <p class="card-text">Level: {{ user.level }}</p>
                 <div class="d-flex justify-content-between align-items-center">
-                  <router-link :to="{ name: 'editUser', params: { id: user.id } }" class="btn btn-primary">Edit</router-link>
+                  <router-link :to="{ name: 'userEdit', params: { id: user.id } }" class="btn btn-primary">Edit</router-link>
                   <button @click="deleteUser(user.id)" class="btn btn-danger">Delete</button>
                 </div>
               </div>
@@ -23,6 +24,7 @@
   
   <script setup>
   import axios from 'axios';
+  import navbar from '@/asset/navbar.vue';
   import { ref, onMounted } from 'vue';
   
   const users = ref([]);

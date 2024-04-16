@@ -42,7 +42,10 @@ const router = createRouter({
     {
       path: "/siswa/create",
       name: "createSiswa",
-      component: CreateSiswa
+      component: CreateSiswa,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/siswa/:id/edit",
@@ -58,7 +61,10 @@ const router = createRouter({
     {
       path: "/user/create",
       name: "userCreate",
-      component: UserCreate
+      component: UserCreate,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/user/:id/edit",
@@ -69,8 +75,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('accessToken');
-  if (to.name !== 'login' && !token) {
+  const isAuthenticated = !!localStorage.getItem('accessToken');
+  console.log(localStorage.getItem('token'))
+
+  if (to.meta.requiresAuth && !isAuthenticated) {
     next({ name: 'login' });
   } else {
     next();

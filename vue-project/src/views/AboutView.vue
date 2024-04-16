@@ -1,9 +1,13 @@
 <template>
+  <Navbar/>
   <div class="about">
     <h1>This is an about page</h1>
   </div>
 </template>
 
+<script setup>
+ import Navbar from "../asset/navbar.vue"
+</script>
 <style>
 
 </style>
