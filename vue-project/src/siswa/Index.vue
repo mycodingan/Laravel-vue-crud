@@ -1,10 +1,8 @@
 <template>
-    <main>
-    </main>
-    <div>
-      <router-link to="/create/siswa" class="btn btn-secondary">Add data</router-link>
-    </div>
-    <div class="container mt-4">
+  <main>
+    <Navbar/>
+  </main>
+  <div class="container mt-4">
       <div class="row">
         <div v-for="student in students" :key="student.id" class="col-md-4 mb-3">
           <div class="card">
@@ -21,11 +19,16 @@
         </div>
       </div>
     </div>
+    <div>
+        <router-link to="/create/siswa" class="btn btn-secondary">Add data</router-link>
+      </div>
+
   </template>
   
   <script setup>
   import axios from 'axios';
   import { ref, onMounted } from   'vue';
+  import Navbar from "../asset/navbar.vue"
   
   const students = ref([]);
   
