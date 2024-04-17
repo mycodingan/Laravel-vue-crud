@@ -1,4 +1,5 @@
 <template>
+  <Navbar/>
   <main>
     <div class="container mt-4">
       <div class="row justify-content-center">
@@ -36,6 +37,7 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
+import Navbar from "../asset/navbar.vue";
 
 const newStudent = ref({
   nama: '',

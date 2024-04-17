@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid d-flex justify-content-center align-items-center h-100">
+    <div class="container-fluid d-flex justify-content-center align-items-center h-100 py-5">
       <div class="card border-info-subtle-800 w-50">
         <div class="card-body p-4">
           <h1 class="text-center mb-4">Login</h1>

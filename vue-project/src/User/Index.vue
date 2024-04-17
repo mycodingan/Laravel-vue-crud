@@ -2,6 +2,7 @@
   <navbar/>
     <main>
       <div class="container mt-4">
+        <router-link to="/user/create" class="btn btn-secondary btn-lg ">Add data</router-link>
         <div class="row">
           <div class="col-md-4 mb-3" v-for="user in users" :key="user.id">
             <div class="card">

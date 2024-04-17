@@ -37,7 +37,10 @@ const router = createRouter({
     {
       path: "/siswa",
       name: "siswa",
-      component: Siswa
+      component: Siswa,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/siswa/create",
@@ -69,7 +72,10 @@ const router = createRouter({
     {
       path: "/user/:id/edit",
       name: "userEdit",
-      component: UserEdit
+      component: UserEdit,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 });

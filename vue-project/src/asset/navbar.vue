@@ -1,9 +1,9 @@
 <style>
 .navbar{
   background-color: #ffffff;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   box-shadow: #000 24px 24px 24pc;
-  margin-top: 14px;
+  
 }
 .navbar-brand{
   font-weight: 500;

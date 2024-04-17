@@ -3,6 +3,7 @@
     <Navbar/>
   </main>
   <div class="container mt-4">
+    <router-link to="/siswa/create" class="btn btn-secondary">Add data</router-link>
       <div class="row">
         <div v-for="student in students" :key="student.id" class="col-md-4 mb-3">
           <div class="card">
@@ -20,7 +21,6 @@
       </div>
     </div>
     <div>
-        <router-link to="/create/siswa" class="btn btn-secondary">Add data</router-link>
       </div>
 
   </template>
