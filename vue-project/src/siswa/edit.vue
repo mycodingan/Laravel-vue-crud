@@ -23,7 +23,7 @@
                 <input type="text" class="form-control" id="jurusan" v-model="editedStudent.jurusan" required>    
               </div>
               <button type="submit" class="btn btn-primary m-3">Update</button>
-              <router-link to="/" class="btn btn-primary">Back</router-link>
+              <router-link to="/siswa" class="btn btn-primary">Back</router-link>
             </form>
           </div>
         </div>

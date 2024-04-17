@@ -18,7 +18,7 @@
             </div>
             <div class="text-center">
               <button type="submit" class="btn btn-primary rounded-pill px-5 py-3">Login</button>
-              <p><small>Belum punya Akun? <router-link to="/register" class="navbar-brand text-primary">Daftar
+              <p><small>Belum punya Akun? <router-link to="/register" class="text-primary">Daftar
                     sekarang</router-link></small></p>
             </div>
           </form>

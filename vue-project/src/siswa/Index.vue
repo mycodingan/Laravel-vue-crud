@@ -3,10 +3,10 @@
     <Navbar/>
   </main>
   <div class="container mt-4">
-    <router-link to="/siswa/create" class="btn btn-secondary">Add data</router-link>
-      <div class="row">
+    <router-link to="/siswa/create" class="btn btn-primary">Add data</router-link>
+      <div class="row container mt-5">
         <div v-for="student in students" :key="student.id" class="col-md-4 mb-3">
-          <div class="card">
+          <div class="card ">
             <div class="card-body">
               <img :src="student.gambar" alt="">
               <h5 class="card-title">{{ student.nama }}</h5>
