@@ -58,29 +58,30 @@ export default {
         const token = localStorage.getItem('accessToken');
         const formData = new FormData();
 
-        formData.append('no_absen', this.editStudent.no_absen);
-        formData.append('nama', this.editStudent.nama);
-        formData.append('kelas', this.editStudent.kelas);
-        formData.append('jurusan', this.this.editStudent.jurusan);
+
 
         if (this.editedStudent.gambar) {
           formData.append('gambar', this.editedStudent.gambar);
+          formData.append('no_absen', this.editedStudent.no_absen);
+        formData.append('nama', this.editedStudent.nama);
+        formData.append('kelas', this.editedStudent.kelas);
+        formData.append('jurusan', this.editedStudent.jurusan);
         }
 
-        await axios.put(`http://192.168.11.149:8000/api/siswa/${studentId}`, formData, {
+        await axios.post(`http://192.168.11.149:8000/api/siswa/${studentId}`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'multipart/form-data' 
           }
         });
-        alert('Student updated successfully!');
+        alert('Berhasil melakukan edit');
         this.$router.push('/siswa'); 
       } catch (error) {
         console.error('Error updating student:', error);
-        alert('Failed to update student. Please try again.');
+        alert('Gagal melakukan edit');
       }
     },
-    handleFileUpload(event) {
+    handleFileUpload(event) {  
       const file = event.target.files[0];
       if (file) {
         this.editedStudent.gambar = file;

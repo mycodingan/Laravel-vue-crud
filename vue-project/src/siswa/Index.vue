@@ -40,7 +40,7 @@ const fetchStudents = async () => {
     console.log(response);
     students.value = response.data.data.map(student => ({
       ...student,
-      gambar: `http://192.168.11.149:8000/${student.gambar}` 
+      gambar: `http://192.168.11.149:8000${student.gambar}` 
     }));
   } catch (error) {
     console.error('Error fetching students:', error);

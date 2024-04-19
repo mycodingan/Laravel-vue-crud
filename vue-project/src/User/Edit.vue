@@ -63,7 +63,7 @@ const updateUser = async () => {
   try {
     const token = localStorage.getItem('accessToken');
     const userId = router.currentRoute.value.params.id;
-    await axios.put(`http://192.168.11.149:8000/api/users/${userId}`, editedUser.value, {
+    await axios.post(`http://192.168.11.149:8000/api/users/${userId}`, editedUser.value, {
       headers: {
         Authorization: `Bearer ${token}`
       }

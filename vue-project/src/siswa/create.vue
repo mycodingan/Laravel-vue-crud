@@ -24,7 +24,6 @@
                   <label for="jurusan" class="form-label">Jurusan</label>
                   <input type="text" class="form-control" id="jurusan" v-model.trim="newStudent.jurusan" required>
                 </div>
-                <!-- Input untuk gambar -->
                 <div class="mb-3">
                   <label for="gambar" class="form-label">Gambar</label>
                   <input type="file" class="form-control" id="gambar" @change="handleFileUpload" accept="image/*" required>
@@ -69,7 +68,7 @@ const addStudent = async () => {
         'Content-Type': 'multipart/form-data'
       }
     });
-    alert('data berhasil');
+    alert('data');
     clearForm();
   } catch (error) {
     console.error('Error adding student:', error);
