@@ -26,11 +26,16 @@
 
 <script setup>
 import axios from 'axios';
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const editedUser = ref({});
+const editedUser = ref({
+  name: '',
+  email: '',
+  level: '',
+  image: ''
+});
 
 const fetchUser = async () => {
   try {
@@ -73,5 +78,5 @@ const handleImageUpload = (event) => {
   reader.readAsDataURL(file);
 };
 
-onMounted(fetchUser);
+fetchUser(); 
 </script>

@@ -63,12 +63,9 @@ const addStudent = async () => {
 };
 
 const clearForm = () => {
-  newStudent.value = {
-    nama: '',
-    no_absen: '',
-    kelas: '',
-    jurusan: ''
-  };
+  newStudent.value.nama = '';
+  newStudent.value.no_absen = '';
+  newStudent.value.kelas = '';
+  newStudent.value.jurusan = '';
 };
 </script>
-

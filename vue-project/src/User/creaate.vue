@@ -43,9 +43,15 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
-import Navbar from "../asset/navbar.vue"
+import router from 'vue-router';
+import Navbar from "../asset/navbar.vue";
 
-const newUser = ref({});
+const newUser = ref({
+  name: '',
+  email: '',
+  level: '',
+  image: ''
+});
 
 const createUser = async () => {
   try {

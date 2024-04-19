@@ -73,6 +73,7 @@
   };
   </script>
   <style scoped>
+    n
   .invalid-feedback {
     color: #dc3545;
     font-size: 80%;

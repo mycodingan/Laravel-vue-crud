@@ -57,7 +57,7 @@ export default {
           }
         });
         alert('Student updated successfully!');
-        this.$router.push('/');
+        this.$router.push('/siswa');
       } catch (error) {
         console.error('Error updating student:', error);
         alert('Failed to update student. Please try again.');
