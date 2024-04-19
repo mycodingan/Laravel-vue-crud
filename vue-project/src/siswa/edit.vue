@@ -22,6 +22,10 @@
                 <label for="jurusan" class="form-label">Jurusan</label>
                 <input type="text" class="form-control" id="jurusan" v-model="editedStudent.jurusan" required>    
               </div>
+              <div class="mb-3">
+                <label for="gambar" class="form-label">Gambar</label>
+                <input type="file" class="form-control" id="gambar" @change="handleFileUpload">
+              </div>
               <button type="submit" class="btn btn-primary m-3">Update</button>
               <router-link to="/siswa" class="btn btn-primary">Back</router-link>
             </form>
@@ -42,7 +46,8 @@ export default {
         no_absen: '',
         nama: '',
         kelas: '',
-        jurusan: ''
+        jurusan: '',
+        gambar: null 
       }
     };
   },
@@ -51,16 +56,34 @@ export default {
       try {
         const studentId = this.$route.params.id;
         const token = localStorage.getItem('accessToken');
-        await axios.put(`http://192.168.11.149:8000/api/siswa/${studentId}`, this.editedStudent, {
+        const formData = new FormData();
+
+        formData.append('no_absen', this.editStudent.no_absen);
+        formData.append('nama', this.editStudent.nama);
+        formData.append('kelas', this.editStudent.kelas);
+        formData.append('jurusan', this.this.editStudent.jurusan);
+
+        if (this.editedStudent.gambar) {
+          formData.append('gambar', this.editedStudent.gambar);
+        }
+
+        await axios.put(`http://192.168.11.149:8000/api/siswa/${studentId}`, formData, {
           headers: {
-            Authorization: `Bearer ${token}` 
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data' 
           }
         });
         alert('Student updated successfully!');
-        this.$router.push('/siswa');
+        this.$router.push('/siswa'); 
       } catch (error) {
         console.error('Error updating student:', error);
         alert('Failed to update student. Please try again.');
+      }
+    },
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        this.editedStudent.gambar = file;
       }
     },
     async fetchStudent() {

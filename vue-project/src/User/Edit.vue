@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <Navbar/>
+  <div class="container bg-light py-5">
     <h1>Edit User</h1>
     <form @submit.prevent="updateUser">
       <div class="mb-3">
@@ -32,6 +33,7 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import Navbar from '../asset/navbar.vue'
 
 const router = useRouter();
 const editedUser = ref({
