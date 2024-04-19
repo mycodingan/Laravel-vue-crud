@@ -11,6 +11,10 @@
         <input type="email" v-model.trim="editedUser.email" id="email" name="email" class="form-control">
       </div>
       <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" v-model.trim="editedUser.password" id="password" name="password" class="form-control">
+      </div>
+      <div class="mb-3">
         <label for="level" class="form-label">Level</label>
         <input type="text" v-model.trim="editedUser.level" id="level" name="level" class="form-control">
       </div>
@@ -33,6 +37,7 @@ const router = useRouter();
 const editedUser = ref({
   name: '',
   email: '',
+  password: '',
   level: '',
   image: ''
 });

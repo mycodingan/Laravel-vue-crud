@@ -10,21 +10,28 @@
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" v-model.trim="newUser.name" id="name" name="name" class="form-control" required>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback" v-if="!newUser.name">
               Please enter a name.
             </div>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" v-model.trim="newUser.email" id="email" name="email" class="form-control" required>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback" v-if="!isValidEmail(newUser.email)">
               Please enter a valid email address.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" v-model.trim="newUser.password" id="password" name="password" class="form-control" required>
+            <div class="invalid-feedback" v-if="!newUser.password">
+              Please enter a password.
             </div>
           </div>
           <div class="mb-3">
             <label for="level" class="form-label">Level</label>
             <input type="text" v-model.trim="newUser.level" id="level" name="level" class="form-control" required>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback" v-if="!newUser.level">
               Please enter a user level.
             </div>
           </div>
@@ -43,12 +50,15 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
-import router from 'vue-router';
 import Navbar from "../asset/navbar.vue";
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const newUser = ref({
   name: '',
   email: '',
+  password: '',
   level: '',
   image: ''
 });
@@ -76,5 +86,10 @@ const handleImageUpload = (event) => {
     newUser.value.image = e.target.result;
   };
   reader.readAsDataURL(file);
+};
+
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 };
 </script>

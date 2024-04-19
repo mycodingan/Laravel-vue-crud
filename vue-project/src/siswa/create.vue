@@ -10,19 +10,19 @@
               <form @submit.prevent="addStudent">
                 <div class="mb-3">
                   <label for="nama" class="form-label">Nama</label>
-                  <input type="text" class="form-control" id="nama" v-model="newStudent.nama" required>
+                  <input type="text" class="form-control" id="nama" v-model.trim="newStudent.nama" required>
                 </div>
                 <div class="mb-3">
                   <label for="no_absen" class="form-label">No Absen</label>
-                  <input type="text" class="form-control" id="no_absen" v-model="newStudent.no_absen" required>
+                  <input type="text" class="form-control" id="no_absen" v-model.trim="newStudent.no_absen" required>
                 </div>
                 <div class="mb-3">
                   <label for="kelas" class="form-label">Kelas</label>
-                  <input type="text" class="form-control" id="kelas" v-model="newStudent.kelas" required>
+                  <input type="text" class="form-control" id="kelas" v-model.trim="newStudent.kelas" required>
                 </div>
                 <div class="mb-3">
                   <label for="jurusan" class="form-label">Jurusan</label>
-                  <input type="text" class="form-control" id="jurusan" v-model="newStudent.jurusan" required>
+                  <input type="text" class="form-control" id="jurusan" v-model.trim="newStudent.jurusan" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
@@ -49,7 +49,13 @@ const newStudent = ref({
 const addStudent = async () => {
   try {
     const token = localStorage.getItem('accessToken');
-    const response = await axios.post('http://192.168.11.149:8000/api/siswa/', newStudent.value, {
+    const newData = {
+      nama: newStudent.value.nama,
+      no_absen: newStudent.value.no_absen,
+      kelas: newStudent.value.kelas,
+      jurusan: newStudent.value.jurusan
+    };
+    const response = await axios.post('http://192.168.11.149:8000/api/siswa/', newData, {
       headers: {
         Authorization: `Bearer ${token}`
       }
