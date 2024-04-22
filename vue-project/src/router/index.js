@@ -8,6 +8,9 @@ import CreateSiswa from "../siswa/create.vue";
 import UserCreate from "../User/creaate.vue";
 import UserData from "../User/Index.vue";
 import UserEdit from "../User/Edit.vue";
+import Forgot from "../auth/forgot.vue";
+import Forgotpw from "../auth/forgot.pw.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +35,16 @@ const router = createRouter({
       path: "/register",
       name: "register",
       component: Register
+    },
+    {
+      path:"/forgot",
+      name: "forgot",
+      component: Forgot 
+    },
+    {
+      path:"/forgotpw",
+      name: "forgotpw",
+      component: Forgotpw
     },
     // Siswa CRUD
     {

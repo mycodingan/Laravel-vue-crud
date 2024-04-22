@@ -1,51 +1,54 @@
 <style>
-.navbar{
+.navbar {
   background-color: #ffffff;
   /* border-radius: 20px; */
   box-shadow: #000 24px 24px 24pc;
-  
+
 }
-.navbar-brand{
+
+.navbar-brand {
   font-weight: 500;
-  color:#007754;
+  color: #007754;
   font-size: 24px;
-  transition: 0.3s , color;
+  transition: 0.3s, color;
 }
-  .login-button {
-    background-color: #009970;
-    color: #fff;
-    font-size: 14px;
-    padding: 8px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: 0.3s background-color;
-  }
 
-  .login-button:hover {
-    background-color: #007754; 
-  }
+.login-button {
+  background-color: #009970;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: 0.3s background-color;
+}
 
-  .navbar-toggler {
-    border: none;
-    font-size: 1.25rem;
-  }
+.login-button:hover {
+  background-color: #007754;
+}
 
-  .navbar-toggler:focus,
-  .btn-close:focus {
-    box-shadow: none;
-    outline: none;
-  }
+.navbar-toggler {
+  border: none;
+  font-size: 1.25rem;
+}
 
-  .nav-link {
-    color: #666777;
-    font-weight: 500;
-  }
+.navbar-toggler:focus,
+.btn-close:focus {
+  box-shadow: none;
+  outline: none;
+}
 
-  .nav-link:hover,
-  .nav-link.active {
-    color: #000;
-  }
-@media (min-width: 911px){
+.nav-link {
+  color: #666777;
+  font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #000;
+}
+
+@media (min-width: 911px) {
   .nav-link::before {
     content: "";
     position: absolute;
@@ -93,9 +96,40 @@
         </div>
       </div>
       <a href="/login" class="login-button">Login</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <div id="userDropdown" class="dropdown">
+        <button class="login-button dropdown-toggle" type="button" id="userDropdownBtn" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          User
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="userDropdownBtn">
+          <li><a class="dropdown-item" href="#" id="logoutBtn">Log Out</a></li>
+        </ul>
+      </div>
     </div>
+
   </nav>
 </template>
+<script>
+// const accessToken = "token123";
+// const userName = "John Doe";
+
+// if (accessToken) {
+//   const userDropdown = document.getElementById("userDropdown");
+//   const userDropdownBtn = document.getElementById("userDropdownBtn");
+//   const logoutBtn = document.getElementById("logoutBtn");
+
+//   userDropdownBtn.textContent = userName;
+
+//   userDropdownBtn.addEventListener("click", function () {
+//     userDropdown.classList.toggle("show");
+//   });
+//   logoutBtn.addEventListener("click", function () {
+//     accessToken = null;
+//     window.location.href = "/logout";
+//   });
+// }
+</script>

@@ -4,7 +4,7 @@ import Narbar from "../asset/navbar.vue"
 
 <template>
   <Narbar/>
-  <div class="container">
+  <div class="container py-5">
    <h1>
     halaman home  
    </h1>
