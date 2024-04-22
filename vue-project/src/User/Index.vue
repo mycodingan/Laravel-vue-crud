@@ -39,13 +39,16 @@
         }
       });
       console.log(response);
-      users.value = response.data.data;
-    } catch (error) { 
+      users.value = response.data.data.map(users => ({
+      ...users,
+      gambar: `http://192.168.11.149:8000${users.gambar}` 
+    }));    } catch (error) { 
       console.error('Error fetching users:', error);
     }
   };
   
-  const deleteUser = async (userId) => {
+  const deleteUser = async (userId) =>  
+   {
     try {
       const token = localStorage.getItem('accessToken');
       await axios.delete(`http://192.168.11.149:8000/api/users/${userId}`, {

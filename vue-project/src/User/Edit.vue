@@ -1,5 +1,5 @@
 <template>
-  <Navbar/>
+  <Navbar />
   <div class="container bg-light py-5">
     <h1>Edit User</h1>
     <form @submit.prevent="updateUser">
@@ -20,10 +20,10 @@
         <input type="text" v-model.trim="editedUser.level" id="level" name="level" class="form-control">
       </div>
       <div class="mb-3">
-        <label for="image" class="form-label">Profile Image</label>
-        <input type="file" accept="image/*" @change="handleImageUpload" id="image" name="image" class="form-control">
+        <label for="gambar" class="form-label">Profile Image</label>
+        <input type="file" accept="image/*" @change="handleImageUpload" id="gambar" name="gambar" class="form-control">
       </div>
-      <img v-if="editedUser.image" :src="editedUser.image" alt="User Image" class="mb-3" style="max-width: 200px;">
+      <img v-if="editedUser.gambar" :src="editedUser.gambar" alt="User Image" class="mb-3" style="max-width: 200px;">
       <button type="submit" class="btn btn-primary">Update User</button>
     </form>
   </div>
@@ -41,7 +41,7 @@ const editedUser = ref({
   email: '',
   password: '',
   level: '',
-  image: ''
+  gambar: ''
 });
 
 const fetchUser = async () => {
@@ -63,7 +63,7 @@ const updateUser = async () => {
   try {
     const token = localStorage.getItem('accessToken');
     const userId = router.currentRoute.value.params.id;
-    await axios.post(`http://192.168.11.149:8000/api/users/${userId}`, editedUser.value, {
+    await axios.post  (`http://192.168.11.149:8000/api/users/${userId}`, editedUser.value, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -71,19 +71,21 @@ const updateUser = async () => {
     alert('User updated successfully!');
     router.push('/user');
   } catch (error) {
-    console.error('Error updating user:', error);
+    console.error('Error updating user:', error.response?.data || error.message);
     alert('Failed to update user. Please try again.');
   }
 };
 
 const handleImageUpload = (event) => {
   const file = event.target.files[0];
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    editedUser.value.image = e.target.result;
-  };
-  reader.readAsDataURL(file);
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      editedUser.value.gambar = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
 };
 
-fetchUser(); 
+fetchUser();
 </script>

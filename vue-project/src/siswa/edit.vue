@@ -62,7 +62,7 @@ export default {
 
         if (this.editedStudent.gambar) {
           formData.append('gambar', this.editedStudent.gambar);
-          formData.append('no_absen', this.editedStudent.no_absen);
+        formData.append('no_absen', this.editedStudent.no_absen);
         formData.append('nama', this.editedStudent.nama);
         formData.append('kelas', this.editedStudent.kelas);
         formData.append('jurusan', this.editedStudent.jurusan);
