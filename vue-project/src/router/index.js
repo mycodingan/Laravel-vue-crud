@@ -10,7 +10,9 @@ import UserData from "../User/Index.vue";
 import UserEdit from "../User/Edit.vue";
 import Forgot from "../auth/forgot.vue";
 import Forgotpw from "../auth/forgot.pw.vue";
-import kalkulatorVue from '@/tools/coba.vue';
+import kalkulatorVue from '@/tools/kalkulator.vue';
+import TodoVue from '@/tools/todo.vue';
+
 
 
 const router = createRouter({
@@ -101,6 +103,11 @@ const router = createRouter({
       path: "/kalkulator",
       name: "kalkulatorVue",
       component: kalkulatorVue
+    },
+    {
+      path: "/todo",
+      name: "TodoVue",
+      component: TodoVue
     }
   ]
 });
