@@ -1,6 +1,6 @@
 <template>
     <div class="p-3" style="max-width: 400px; margin: 50px auto; background: #234">
-      <div class="w-full rounded m-1 p-4 text-right lead font-weight-bold text-white bg-vue-dark">
+      <div class="w-full rounded m-1 p-4<!--  --> text-right lead font-weight-bold text-white bg-vue-dark">
         {{ calculatorValue || null }}
       </div>
       <div class="row no-gutters">
