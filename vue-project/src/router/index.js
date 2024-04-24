@@ -10,6 +10,7 @@ import UserData from "../User/Index.vue";
 import UserEdit from "../User/Edit.vue";
 import Forgot from "../auth/forgot.vue";
 import Forgotpw from "../auth/forgot.pw.vue";
+import kalkulatorVue from '@/tools/coba.vue';
 
 
 const router = createRouter({
@@ -95,6 +96,11 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/kalkulator",
+      name: "kalkulatorVue",
+      component: kalkulatorVue
     }
   ]
 });
