@@ -13,22 +13,23 @@
     <div class="container-fluid d-flex justify-content-center align-items-center h-100 py-5">
         <div class="card border-info-subtle-800 w-50">
             <div class="card-body p-4">
-                <h1 class="text-center mb-4">Reset Password</h1>
+                <h1 class="text-center mb-4">Forgot Password</h1>
                 <form @submit.prevent="submitForm">
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password baru</label>
-                        <input type="password" v-model.trim="password" id="password" name="password" placeholder="password baru"
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" v-model.trim="password" id="password" name="password" placeholder="Password"
                             :class="{ 'is-invalid': message_password }" class="form-control rounded-pill py-3 px-4" />
                         <div v-if="message_password" class="invalid-feedback">{{ message_password }}</div>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">confimasi password </label>
-                        <input type="password" v-model.trim="password" id="password" name="password" placeholder="corfim password"
+                        <label for="password" class="form-label">corfim Password</label>
+                        <input type="password" v-model.trim="password" id="password" name="password" placeholder="Password"
                             :class="{ 'is-invalid': message_password }" class="form-control rounded-pill py-3 px-4" />
                         <div v-if="message_password" class="invalid-feedback">{{ message_password }}</div>
                     </div>
+
                     <div class="text-center">
-                        <router -link type="submit" class="btn btn-primary rounded-pill px-5 py-3" to="/">Submit</router>
+                        <router-link  type="submit" to="/"  class="btn btn-primary rounded-pill px-5 py-3">Submit</router-link>
                         <p><small>Remember your password? <router-link to="/login"
                                     class="text-primary">Login</router-link></small></p>
                     </div>
