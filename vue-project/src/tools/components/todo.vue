@@ -5,7 +5,7 @@
         <div class="d-flex mt-5 w-100">
             <input type="text" v-model="task" placeholder="Enter task" class="w-100 form-control"
                 @keyup.enter="addTask">
-                    <button class="btn btn-primary w-100" @click="addTask">Add Task</button>
+                    <button class="btn btn-primary w-80" @click="addTask">Add Task</button>
         </div>
 
         <ul class="list-group mt-3">
@@ -52,7 +52,7 @@ export default {
         editTask(index) {
             if (this.editing && this.editingIndex === index) {
                 if (this.editedTask.trim()) {
-                    this.todos[index] = this.editedTask.trim();
+                    this.todos[index]=this.editedTask.trim();
                     this.editing = false;
                     this.editingIndex = null;
                     this.editedTask = '';
