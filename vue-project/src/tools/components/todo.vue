@@ -9,7 +9,7 @@
         </div>
 
         <ul class="list-group mt-3">
-            <li class="list-group-item" v-for="(todo, index) in todos" :key="index">
+            <li class="list-group-item" v-for="(todo, index) in todos" :key="index">        
                 <div class="d-flex justify-content-between align-items-center">
                     <div v-if="!editing || editingIndex !== index">{{ todo }}</div>
                     <input v-else type="text" v-model="editedTask" class="form-control">
@@ -22,8 +22,9 @@
                 </div>
             </li>
         </ul>
+            
 
-        <div class="mt-3">
+        <div class="mt-3">x
             <button class="btn btn-danger" @click="clearTodo">Clear Todo</button>
         </div>
     </div>
