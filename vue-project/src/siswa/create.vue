@@ -1,5 +1,5 @@
 <template>
-  <Navbar/>
+  <Navbar />
   <main>
     <div class="container mt-4">
       <div class="row justify-content-center">
@@ -27,6 +27,7 @@
                 <div class="mb-3">
                   <label for="gambar" class="form-label">Gambar</label>
                   <input type="file" class="form-control" id="gambar" @change="handleFileUpload" accept="image/*" required>
+                  <img v-if="newStudent.gambar" :src="URL.createObjectURL(newStudent.gambar)" alt="Preview" class="mt-2" style="max-width: 100%">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
@@ -68,11 +69,11 @@ const addStudent = async () => {
         'Content-Type': 'multipart/form-data'
       }
     });
-    alert('data');
+    alert('Data added successfully');
     clearForm();
   } catch (error) {
     console.error('Error adding student:', error);
-    alert('gagal');
+    alert('Failed to add data');
   }
 };
 
@@ -81,7 +82,8 @@ const clearForm = () => {
   newStudent.value.no_absen = '';
   newStudent.value.kelas = '';
   newStudent.value.jurusan = '';
-  newStudent.value.gambar = null; 
+  newStudent.value.gambar = null;
+  document.getElementById('gambar').value = '';
 };
 
 const handleFileUpload = (event) => {
