@@ -1,7 +1,7 @@
 <template>
   <Navbar/>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="about container py-5">
+    <h1>Selamat Datang di halaman About</h1>
   </div>
 </template>
 

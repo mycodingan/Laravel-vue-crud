@@ -2,10 +2,11 @@
   <navbar/>
     <main>
       <div class="container mt-4">
-        <div class="row">
+        <router-link to="/user/create" class="btn btn-secondary btn-lg ">Add data</router-link>
+        <div class="row container mt-5">
           <div class="col-md-4 mb-3" v-for="user in users" :key="user.id">
             <div class="card">
-              <img :src="user.image" class="card-img-top" alt="User Image">
+              <img :src="user.gambar" class="card-img-top" alt="User Image">
               <div class="card-body">
                 <h5 class="card-title">{{ user.name }}</h5>
                 <p class="card-text">Email: {{ user.email }}</p>
@@ -38,13 +39,16 @@
         }
       });
       console.log(response);
-      users.value = response.data.data;
-    } catch (error) {
+      users.value = response.data.data.map(users => ({
+      ...users,
+      gambar: `http://192.168.11.149:8000${users.gambar}` 
+    }));    } catch (error) { 
       console.error('Error fetching users:', error);
     }
   };
   
-  const deleteUser = async (userId) => {
+  const deleteUser = async (userId) =>  
+   {
     try {
       const token = localStorage.getItem('accessToken');
       await axios.delete(`http://192.168.11.149:8000/api/users/${userId}`, {

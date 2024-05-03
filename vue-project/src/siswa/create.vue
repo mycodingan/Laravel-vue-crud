@@ -1,4 +1,5 @@
 <template>
+  <Navbar />
   <main>
     <div class="container mt-4">
       <div class="row justify-content-center">
@@ -9,19 +10,24 @@
               <form @submit.prevent="addStudent">
                 <div class="mb-3">
                   <label for="nama" class="form-label">Nama</label>
-                  <input type="text" class="form-control" id="nama" v-model="newStudent.nama" required>
+                  <input type="text" class="form-control" id="nama" v-model.trim="newStudent.nama" required>
                 </div>
                 <div class="mb-3">
                   <label for="no_absen" class="form-label">No Absen</label>
-                  <input type="text" class="form-control" id="no_absen" v-model="newStudent.no_absen" required>
+                  <input type="text" class="form-control" id="no_absen" v-model.trim="newStudent.no_absen" required>
                 </div>
                 <div class="mb-3">
                   <label for="kelas" class="form-label">Kelas</label>
-                  <input type="text" class="form-control" id="kelas" v-model="newStudent.kelas" required>
+                  <input type="text" class="form-control" id="kelas" v-model.trim="newStudent.kelas" required>
                 </div>
                 <div class="mb-3">
                   <label for="jurusan" class="form-label">Jurusan</label>
-                  <input type="text" class="form-control" id="jurusan" v-model="newStudent.jurusan" required>
+                  <input type="text" class="form-control" id="jurusan" v-model.trim="newStudent.jurusan" required>
+                </div>
+                <div class="mb-3">
+                  <label for="gambar" class="form-label">Gambar</label>
+                  <input type="file" class="form-control" id="gambar" @change="handleFileUpload" accept="image/*" required>
+                  <img v-if="newStudent.gambar" :src="URL.createObjectURL(newStudent.gambar)" alt="Preview" class="mt-2" style="max-width: 100%">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
@@ -36,36 +42,54 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
+import Navbar from "../asset/navbar.vue";
 
 const newStudent = ref({
   nama: '',
   no_absen: '',
   kelas: '',
-  jurusan: ''
+  jurusan: '',
+  gambar: null,
 });
 
 const addStudent = async () => {
   try {
     const token = localStorage.getItem('accessToken');
-    const response = await axios.post('http://192.168.11.149:8000/api/siswa/', newStudent.value, {
+    const formData = new FormData();
+    formData.append('gambar', newStudent.value.gambar); 
+
+    formData.append('nama', newStudent.value.nama);
+    formData.append('no_absen', newStudent.value.no_absen);
+    formData.append('kelas', newStudent.value.kelas);
+    formData.append('jurusan', newStudent.value.jurusan);
+
+    const response = await axios.post('http://192.168.11.149:8000/api/siswa/', formData, {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data'
       }
     });
-    alert('Student added successfully!');
+    alert('Data added successfully');
     clearForm();
   } catch (error) {
     console.error('Error adding student:', error);
-    alert('Failed to add student. Please try again.');
+    alert('Failed to add data');
   }
 };
 
 const clearForm = () => {
-  newStudent.value = {
-    nama: '',
-    no_absen: '',
-    kelas: '',
-    jurusan: ''
-  };
+  newStudent.value.nama = '';
+  newStudent.value.no_absen = '';
+  newStudent.value.kelas = '';
+  newStudent.value.jurusan = '';
+  newStudent.value.gambar = null;
+  document.getElementById('gambar').value = '';
+};
+
+const handleFileUpload = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    newStudent.value.gambar = file;
+  }
 };
 </script>

@@ -1,13 +1,19 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import Login from '../auth/Login.vue'
-import Register from  "../auth/Register.vue"
-import Siswa from "../siswa/Index.vue"
-import SiswaEdit from "../siswa/edit.vue" 
-import CreateSiswa from "../siswa/create.vue" 
-import UserCreate from "../User/creaate.vue" 
-import UserData from "../User/Index.vue"
-import UserEdit from "../User/Edit.vue"
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import Login from '../auth/Login.vue';
+import Register from  "../auth/Register.vue";
+import Siswa from "../siswa/Index.vue";
+import SiswaEdit from "../siswa/edit.vue";
+import CreateSiswa from "../siswa/create.vue";
+import UserCreate from "../User/creaate.vue";
+import UserData from "../User/Index.vue";
+import UserEdit from "../User/Edit.vue";
+import Forgot from "../auth/forgot.vue";
+import Forgotpw from "../auth/forgot.pw.vue";
+import kalkulatorVue from '@/tools/kalkulator.vue';
+import TodoVue from '@/tools/todo.vue';
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,11 +39,24 @@ const router = createRouter({
       name: "register",
       component: Register
     },
+    {
+      path:"/forgot",
+      name: "forgot",
+      component: Forgot 
+    },
+    {
+      path:"/forgotpw",
+      name: "forgotpw",
+      component: Forgotpw
+    },
     // Siswa CRUD
     {
       path: "/siswa",
       name: "siswa",
-      component: Siswa
+      component: Siswa,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/siswa/create",
@@ -50,13 +69,19 @@ const router = createRouter({
     {
       path: "/siswa/:id/edit",
       name: "siswaEdit",
-      component: SiswaEdit 
+      component: SiswaEdit,
+      meta: {
+        requiresAuth: true
+      }
     },
     // User CRUD
     {
       path: "/user",
       name: "user",
-      component: UserData
+      component: UserData,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/user/create",
@@ -69,19 +94,41 @@ const router = createRouter({
     {
       path: "/user/:id/edit",
       name: "userEdit",
-      component: UserEdit
+      component: UserEdit,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/kalkulator",
+      name: "kalkulatorVue",
+      component: kalkulatorVue
+    },
+    {
+      path: "/todo",
+      name: "TodoVue",
+      component: TodoVue
     }
   ]
 });
 
-router.beforeEach((to, from, next) => {
-  const isAuthenticated = !!localStorage.getItem('accessToken');
-  console.log(localStorage.getItem('token'))
+router.beforeEach((to, from, push) => {
+  const isLoggedIn = localStorage.getItem('accessToken');
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const userRole = localStorage.getItem('userRole');
 
-  if (to.meta.requiresAuth && !isAuthenticated) {
-    next({ name: 'login' });
+  if (requiresAuth && !isLoggedIn) {
+    push('/login');
+  } else if (requiresAuth && isLoggedIn) {
+    if (to.meta.role === 'admin' && userRole !== 'admin') {
+      push('/user');
+    } else if (to.meta.role === 'user' && userRole !== 'user') {
+      push('/');
+    } else {
+      push();
+    }
   } else {
-    next();
+    push();
   }
 });
 
