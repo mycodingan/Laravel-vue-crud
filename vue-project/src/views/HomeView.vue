@@ -25,7 +25,7 @@ import Narbar from "../asset/navbar.vue"
           <div class="card-body">
             <h5 class="card-title">Jumlah Total Siswa: 50</h5>
           </div>
-        </div>
+        </div>      
       </div>
       <div class="col-md-2">
         <div class="card">

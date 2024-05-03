@@ -90,6 +90,9 @@
               <a class="nav-link mx-lg-2" href="/user">User</a>
             </li>
             <li class="nav-item">
+            <a href="/server" class="nav-link active">server</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link mx-lg-2" href="/about">About</a>
             </li>
             <li class="nav-item dropdown">
