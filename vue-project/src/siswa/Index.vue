@@ -65,15 +65,14 @@ const fetchStudents = async () => {
       ...student,
       gambar: `http://192.168.11.149:8000${student.gambar}`
     }));
-  } catch (error) {
-    console.error('Error fetching students:', error);
-  }
+    } catch (error) {
+      console.error('Error fetching students:', error);
+    }
 };
 
 const deleteStudent = async (studentId) => {
   try {
-    const token = localStorage.getItem('accessToken');
-    await axios.delete(`http://192.168.11.149:8000/api/siswa/${studentId}`, {
+~    await axios.delete(`http://192.168.11.149:8000/api/siswa/${studentId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
