@@ -104,8 +104,8 @@ const router = createRouter({
     {
       path: "/server",
       name: "server",
-      components: ServerVue,
-      meta:{
+      component: ServerVue,
+      meta: {
         requiresAuth: true
       }
     },
