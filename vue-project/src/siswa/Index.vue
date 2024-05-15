@@ -13,48 +13,26 @@
             <p class="card-text">No Absen: {{ student.no_absen }}</p>
             <p class="card-text">Kelas: {{ student.kelas }}</p>
             <p class="card-text">Jurusan: {{ student.jurusan }}</p>
-            <router-link
-              :to="{ name: 'siswaEdit', params: { id: student.id } }"
-              class="btn btn-primary m-3"
-              >Edit</router-link
-            >
-            <button
-              type="button"
-              class="btn btn-danger"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
+            <router-link :to="{ name: 'siswaEdit', params: { id: student.id } }"
+              class="btn btn-primary m-3">Edit</router-link>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Delete
             </button>
 
             <!-- modal -->
-            <div
-              class="modal fade"
-              id="exampleModal"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">
                       apa anda yakin mau menghapus data
                     </h1>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
 
                   <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                       Close
                     </button>
                     <button @click="deleteStudent(student.id)" class="btn btn-primary">
@@ -73,11 +51,7 @@
         Previous
       </button>
       <span class="mx-2">{{ page }}</span>
-      <button
-        @click="nextPage"
-        :disabled="page * pageSize >= totalStudents"
-        class="btn btn-secondary"
-      >
+      <button @click="nextPage" :disabled="page * pageSize >= totalStudents" class="btn btn-secondary">
         Next
       </button>
     </div>
@@ -90,9 +64,9 @@ import { ref, onMounted, computed } from "vue";
 import Navbar from "../asset/navbar.vue";
 
 const page = ref(1);
-const pageSize = 10; // Ubah sesuai kebutuhan
+const pageSize = 10 ;
 const totalStudents = ref(0);
-const totalPages = computed(() => Math.ceil(totalStudents.value / pageSize));
+const totalPages = computed(() => Math.ceil(totalStudents.value / pageSize.totalStudents));
 
 const students = ref([]);
 
@@ -114,7 +88,7 @@ const fetchStudents = async () => {
     }));
     totalStudents.value = response.data.total;
   } catch (error) {
-    console.error("Error fetching students:", error);
+    console.error("Error:", error);
   }
 };
 
@@ -129,8 +103,8 @@ const deleteStudent = async (studentId) => {
     alert("Student deleted successfully!");
     fetchStudents();
   } catch (error) {
-    console.error("Error deleting student:", error);
-    alert("Failed to delete student. Please try again.");
+    console.error("Error delet:", error);
+    alert("gagal.");
   }
 };
 
