@@ -60,13 +60,13 @@
 
 <script setup>
 import axios from "axios";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 import Navbar from "../asset/navbar.vue";
 
 const page = ref(1);
-const pageSize = 10 ;
+const pageSize = 100;
 const totalStudents = ref(0);
-const totalPages = computed(() => Math.ceil(totalStudents.value / pageSize.totalStudents));
+let totalPages;
 
 const students = ref([]);
 
@@ -81,12 +81,13 @@ const fetchStudents = async () => {
         },
       }
     );
-    console.log(response);
+    console.log('ttl',response.data.meta.total);
     students.value = response.data.data.map((student) => ({
       ...student,
       gambar: `http://192.168.11.149:8000${student.gambar}`,
     }));
-    totalStudents.value = response.data.total;
+    totalStudents.value = response.data.meta.total;
+    totalPages = response.data.meta.last_page;
   } catch (error) {
     console.error("Error:", error);
   }
@@ -109,7 +110,7 @@ const deleteStudent = async (studentId) => {
 };
 
 const nextPage = () => {
-  if (page.value < totalPages.value) {
+  if (page.value < totalPages) {
     page.value++;
     fetchStudents();
   }

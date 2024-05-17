@@ -133,7 +133,7 @@ const editServer = (server  ) => {
 const updateServer = async () => {
   try {
     const token = localStorage.getItem("accessToken");
-    await axios.put(`http://192.168.11.149:8000/api/server/${currentServer.id}`, currentServer, {
+    await axios.post(`http://192.168.11.149:8000/api/server/${currentServer.id}`, currentServer, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
