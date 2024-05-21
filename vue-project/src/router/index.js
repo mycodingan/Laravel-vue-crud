@@ -12,6 +12,7 @@ import Forgot from "../auth/forgot.vue";
 import Forgotpw from "../auth/forgot.pw.vue";
 import kalkulatorVue from '@/tools/kalkulator.vue';
 import TodoVue from '@/tools/todo.vue';
+import ServerVue from "../server/index.vue";
 
 
 
@@ -50,7 +51,7 @@ const router = createRouter({
       component: Forgotpw
     },
     // Siswa CRUD
-    {
+    { 
       path: "/siswa",
       name: "siswa",
       component: Siswa,
@@ -99,6 +100,16 @@ const router = createRouter({
         requiresAuth: true
       }
     },
+    /* server */
+    {
+      path: "/server",
+      name: "server",
+      component: ServerVue,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    // tool
     {
       path: "/kalkulator",
       name: "kalkulatorVue",
